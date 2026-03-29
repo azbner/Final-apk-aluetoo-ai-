@@ -17,8 +17,8 @@ jobs:
           pip install flet[all] groq pytz
 
       - name: Build Android
-        # On utilise --requirements pour Groq et --icon pour ton beau logo
-        run: yes | flet build apk --product "ALUETOO AI" --requirements requirements.txt --icon icon.png
+        # On simplifie la commande au maximum pour éviter les erreurs de syntaxe
+        run: yes | flet build apk --product "ALUETOO AI" --icon icon.png
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
