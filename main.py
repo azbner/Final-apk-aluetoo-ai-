@@ -7,7 +7,7 @@ import pytz
 
 # --- CONFIGURATION GROQ ---
 # Remplace par ta clé ou configure une variable d'environnement
-GROQ_API_KEY = "TA_CLE_GROQ_ICI" 
+GROQ_API_KEY = "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" 
 client = Groq(api_key=GROQ_API_KEY)
 
 def main(page: ft.Page):
