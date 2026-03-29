@@ -12,16 +12,17 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Tools
+      - name: Install Dependencies
         run: |
           pip install flet[all] groq pytz
 
       - name: Build Android
-        # On simplifie la commande au maximum pour éviter les erreurs de syntaxe
-        run: yes | flet build apk --product "ALUETOO AI" --icon icon.png
+        # On force l'inclusion de TOUT ce qui manque
+        run: yes | flet build apk --product "ALUETOO AI" --include-packages groq pytz
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: ALUETOO-AI-APP
           path: build/apk/*.apk
+
