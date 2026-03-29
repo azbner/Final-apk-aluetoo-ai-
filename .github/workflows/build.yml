@@ -17,12 +17,11 @@ jobs:
           pip install flet[all] groq pytz
 
       - name: Build Android
-        # On force l'inclusion de TOUT ce qui manque
-        run: yes | flet build apk --product "ALUETOO AI" --include-packages groq pytz
+        # On reste sur la commande ultra-basique qui ne plante pas
+        run: yes | flet build apk --product "ALUETOO AI"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: ALUETOO-AI-APP
           path: build/apk/*.apk
-
