@@ -6,22 +6,35 @@ from datetime import datetime
 import pytz
 
 # --- CONFIGURATION GROQ ---
-# Remplace par ta clé ou configure une variable d'environnement
-GROQ_API_KEY = "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" 
-client = Groq(api_key=GROQ_API_KEY)
+# J'ai mis ta clé ici, assure-toi qu'il n'y a pas d'espace autour
+GROQ_API_KEY = "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"
 
 def main(page: ft.Page):
-        # Ajoute cette ligne juste ici :
-    page.window_visible = True 
-    
+    # 1. On configure l'écran TOUT DE SUITE pour éviter le noir
     page.title = "ALUETOO AI"
     page.theme_mode = ft.ThemeMode.DARK
     page.bgcolor = "#0b0e14"
     page.padding = 20
     page.scroll = ft.ScrollMode.ADAPTIVE
+    
+    # 2. On affiche un message de bienvenue immédiat
+    welcome_msg = ft.Text("Démarrage de ALUETOO AI...", color="white", size=20)
+    page.add(welcome_msg)
     page.update()
-    # Historique des messages
-    chat_history = ft.Column(expand=True, scroll=ft.ScrollMode.ALWAYS, spacing=20)
+
+    # 3. Connexion à Groq
+    try:
+        client = Groq(api_key=GROQ_API_KEY)
+        welcome_msg.value = "ALUETOO AI est prêt !"
+        page.update()
+    except Exception as e:
+        welcome_msg.value = f"Erreur de connexion : {e}"
+        page.update()
+
+    # --- La suite de ton code (chat_history, fonctions, etc.) ---
+    chat_history = ft.Column(expand=True, scroll=ft.ScrollMode.ALWAYS)
+    # ...
+
     
     # Variable pour stocker l'image encodée
     current_image_base64 = [None]
