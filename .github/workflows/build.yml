@@ -17,7 +17,7 @@ jobs:
 
       - name: Build Android
         # On ajoute --icon ici (vérifie que le nom du fichier est le bon !)
-        run: yes | flet build apk --product "ALUETOO AI" --include-packages groq --icon "icon.jpeg"
+        run: yes | flet build apk --product "ALUETOO AI" --include-packages groq --icon "icon.pnj"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
