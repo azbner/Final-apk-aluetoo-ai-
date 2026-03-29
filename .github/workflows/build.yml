@@ -15,13 +15,13 @@ jobs:
       - name: Install Tools
         run: |
           pip install flet[all] groq
-          # On vérifie que les outils sont là
           flet --version
 
       - name: Build Android
-        # Commande ultra-simplifiée pour éviter l'erreur "unrecognized arguments"
-        run: yes | flet build apk --product "ALUETOO AI" --icon icon.png
-
+        # On utilise une commande simplifiée au maximum sans les options qui bloquent
+        run: |
+          yes | flet build apk --product "ALUETOO AI"
+          
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
