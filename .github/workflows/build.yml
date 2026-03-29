@@ -14,14 +14,12 @@ jobs:
 
       - name: Install Tools
         run: |
-          pip install flet[all] groq
-          flet --version
+          pip install flet[all] groq pytz
 
       - name: Build Android
-        # On utilise une commande simplifiée au maximum sans les options qui bloquent
-        run: |
-          yes | flet build apk --product "ALUETOO AI"
-          
+        # On utilise --requirements pour Groq et --icon pour ton beau logo
+        run: yes | flet build apk --product "ALUETOO AI" --requirements requirements.txt --icon icon.png
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
