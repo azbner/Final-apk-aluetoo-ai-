@@ -11,13 +11,15 @@ GROQ_API_KEY = "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"
 client = Groq(api_key=GROQ_API_KEY)
 
 def main(page: ft.Page):
-    # Configuration de la page (Mode Mobile)
+        # Ajoute cette ligne juste ici :
+    page.window_visible = True 
+    
     page.title = "ALUETOO AI"
     page.theme_mode = ft.ThemeMode.DARK
     page.bgcolor = "#0b0e14"
     page.padding = 20
     page.scroll = ft.ScrollMode.ADAPTIVE
-
+    page.update()
     # Historique des messages
     chat_history = ft.Column(expand=True, scroll=ft.ScrollMode.ALWAYS, spacing=20)
     
