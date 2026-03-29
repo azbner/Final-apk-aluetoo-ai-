@@ -7,22 +7,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Install Flet and Dependencies
-        run: |
-          pip install flet groq pytz
+      - name: Install Dependencies
+        run: pip install flet groq pytz
 
-      - name: Build Android APK
-        run: |
-          flet build apk --project-name "ALUETOO AI" --org "com.leociach" --icon icon.png
-
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ALUETOO-AI-FINALE
-          path: build/apk/*.apk
-
+      - name: Build Android
+        run: flet build apk --project-name "ALUETOO AI" --icon icon.png
