@@ -1,4 +1,4 @@
-name: Build APK Final avec Icone
+name: Build APK Final
 on: [push]
 
 jobs:
@@ -16,12 +16,11 @@ jobs:
         run: pip install flet[all] groq
 
       - name: Build Android
-        # On ajoute --icon ici (vérifie que le nom du fichier est le bon !)
-        run: yes | flet build apk --product "ALUETOO AI" --include-packages groq --icon "icon.png"
+        # On a simplifié les guillemets pour que Flet comprenne bien chaque morceau
+        run: yes | flet build apk --product "ALUETOO AI" --include-packages groq --icon icon.png
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: ALUETOO-AI-APP
           path: build/apk/*.apk
-
