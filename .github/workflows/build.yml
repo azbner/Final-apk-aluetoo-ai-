@@ -12,11 +12,16 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Flet Tools
-        run: |
-          pip install flet[all] groq pytz
+      - name: Install Tools
+        run: pip install flet[all] groq pytz
 
       - name: Build Android
-        run: |
-          # Le "yes" au début force la réponse à toutes les questions du robot
-          yes | flet build apk --product "ALUETOO AI"
+        run: yes | flet build apk --product "ALUETOO AI"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ALUETOO-AI-APP
+          # C'est ici qu'on lui dit où trouver le fichier
+          path: build/apk/*.apk
+
