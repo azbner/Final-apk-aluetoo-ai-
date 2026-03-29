@@ -12,8 +12,10 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Dependencies
-        run: pip install flet groq pytz
+      - name: Install Tools
+        run: |
+          pip install flet[all] groq pytz
 
       - name: Build Android
-        run: flet build apk --project-name "ALUETOO AI" --icon icon.png
+        run: |
+          flet build apk --product "ALUETOO AI"
