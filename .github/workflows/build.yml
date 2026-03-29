@@ -13,11 +13,14 @@ jobs:
           python-version: '3.10'
 
       - name: Install Tools
-        run: pip install flet[all] groq
+        run: |
+          pip install flet[all] groq
+          # On vérifie que les outils sont là
+          flet --version
 
       - name: Build Android
-        # On a simplifié les guillemets pour que Flet comprenne bien chaque morceau
-        run: yes | flet build apk --product "ALUETOO AI" --include-packages groq --icon icon.png
+        # Commande ultra-simplifiée pour éviter l'erreur "unrecognized arguments"
+        run: yes | flet build apk --product "ALUETOO AI" --icon icon.png
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
