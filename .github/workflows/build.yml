@@ -1,4 +1,4 @@
-name: Build APK Final
+name: Build APK Final avec Icone
 on: [push]
 
 jobs:
@@ -13,15 +13,15 @@ jobs:
           python-version: '3.10'
 
       - name: Install Tools
-        run: pip install flet[all] groq pytz
+        run: pip install flet[all] groq
 
       - name: Build Android
-        run: yes | flet build apk --product "ALUETOO AI"
+        # On ajoute --icon ici (vérifie que le nom du fichier est le bon !)
+        run: yes | flet build apk --product "ALUETOO AI" --include-packages groq --icon "icon.jpeg"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: ALUETOO-AI-APP
-          # C'est ici qu'on lui dit où trouver le fichier
           path: build/apk/*.apk
 
